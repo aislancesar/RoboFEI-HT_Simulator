@@ -36,18 +36,17 @@ class Robot(pygame.sprite.Sprite):
         self.new_x += cos(radians(self.rotate))*front
         self.new_y += sin(radians(self.rotate))*front
 
+        if self.new_x > 1040 - self.radius:
+            self.new_x = 1040 - self.radius - 3
+        elif self.new_x < self.radius:
+            self.new_x = self.radius + 3
+
+        if self.new_y > 740 - self.radius:
+            self.new_y = 740 - self.radius - 3
+        elif self.new_y < self.radius:
+            self.new_y = self.radius + 3
+
         self.x = int(self.new_x)
         self.y = int(self.new_y)
-
-        if self.x > 1040:
-            self.x = 1040
-        elif self.x < 0:
-            self.x = 0
-
-        if self.y > 740:
-            self.y = 740
-        elif self.y < 0:
-            self.y = 0
-
 
         self.theta = radians(self.rotate)
