@@ -1,6 +1,7 @@
 #local
 from robot import *
 from collisions import *
+from ball import *
 
 #python
 from math import cos
@@ -11,10 +12,6 @@ def update_mouse_pos():
     mx, my = pygame.mouse.get_pos()
     return mx, my
 
-
-def draw_ball(x,y):
-    pygame.draw.circle(screen,(255,255,255),(x,y),10,0)
-
 rotate = 0
 ball = False
 x_ball, y_ball = -10, -10
@@ -23,6 +20,8 @@ x,y = 0, 0
 robots = [0]
 robot_index_control = 0
 rotate_control = 0
+
+bola = Ball(300, 300, 0.95)
 
 while 1:
 
@@ -81,6 +80,9 @@ while 1:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_9:
             robot_index_control = 9
 
+        if event.type == pygame.KEYUP and event.key == pygame.K_y:
+            bola.put_in_motion(10, -45)
+
 
         #if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
         #    robot = pygame.transform.rotate(robot,45)
@@ -89,6 +91,7 @@ while 1:
             sys.exit()
 
     draw_soccer_field()
+
 
 
     rotate = 0
@@ -115,9 +118,10 @@ while 1:
     if robots:
         for robot_index in range(1,len(robots)):
             robots[robot_index].draw_robot(robot_index)
+            collide(robots[robot_index], bola)
 
-
-
+    bola.motion_model()
+    bola.draw_ball()
 
     pygame.display.flip()
 

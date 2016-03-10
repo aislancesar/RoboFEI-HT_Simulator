@@ -3,7 +3,6 @@ from math import cos
 from math import sin
 from math import radians
 
-
 class Robot(pygame.sprite.Sprite):
     def __init__(self,x,y,theta):
         pygame.sprite.Sprite.__init__(self)
@@ -50,3 +49,4 @@ class Robot(pygame.sprite.Sprite):
         self.y = int(self.new_y)
 
         self.theta = radians(self.rotate)
+
