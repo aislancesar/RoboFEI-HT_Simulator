@@ -83,6 +83,9 @@ while 1:
         if event.type == pygame.KEYUP and event.key == pygame.K_y:
             bola.put_in_motion(10, -45)
 
+        if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
+            robots[1].kick(bola)
+
 
         #if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
         #    robot = pygame.transform.rotate(robot,45)

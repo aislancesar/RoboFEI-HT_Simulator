@@ -2,6 +2,10 @@ from World import *
 from math import cos
 from math import sin
 from math import radians
+from math import sqrt
+from math import atan2
+from math import exp
+from math import pi
 
 class Robot(pygame.sprite.Sprite):
     def __init__(self,x,y,theta):
@@ -50,3 +54,8 @@ class Robot(pygame.sprite.Sprite):
 
         self.theta = radians(self.rotate)
 
+    def kick(self, ball):
+        d = sqrt((self.x - ball.x)**2+(self.y - ball.y)**2)
+        r = atan2((ball.y-self.y), (ball.x-self.x))*180/pi
+        force = 10 * exp(-2.3/ball.radius*d+2.3/ball.radius*(self.radius+ball.radius))
+        ball.put_in_motion(force, r)
